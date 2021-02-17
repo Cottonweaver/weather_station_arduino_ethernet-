@@ -1,0 +1,15 @@
+﻿  Server_Socket.cpp
+C:\Users\jwoll\Desktop\project_folder\server_socket\Server_Socket\print_deffinitions.h(3,17): warning C4309: 'initializing': truncation of constant value
+C:\Users\jwoll\Desktop\project_folder\server_socket\Server_Socket\print_deffinitions.h(4,17): warning C4309: 'initializing': truncation of constant value
+C:\Users\jwoll\Desktop\project_folder\server_socket\Server_Socket\print_deffinitions.h(5,17): warning C4309: 'initializing': truncation of constant value
+C:\Users\jwoll\Desktop\project_folder\server_socket\Server_Socket\print_deffinitions.h(6,17): warning C4309: 'initializing': truncation of constant value
+C:\Users\jwoll\Desktop\project_folder\server_socket\Server_Socket\print_deffinitions.h(7,15): warning C4309: 'initializing': truncation of constant value
+C:\Users\jwoll\Desktop\project_folder\server_socket\Server_Socket\print_deffinitions.h(8,15): warning C4309: 'initializing': truncation of constant value
+C:\Users\jwoll\Desktop\project_folder\server_socket\Server_Socket\print_deffinitions.h(9,12): warning C4309: 'initializing': truncation of constant value
+C:\Users\jwoll\Desktop\project_folder\server_socket\Server_Socket\print_deffinitions.h(10,12): warning C4309: 'initializing': truncation of constant value
+C:\Users\jwoll\Desktop\project_folder\server_socket\Server_Socket\print_deffinitions.h(11,12): warning C4309: 'initializing': truncation of constant value
+C:\Users\jwoll\Desktop\project_folder\server_socket\Server_Socket\print_deffinitions.h(12,12): warning C4309: 'initializing': truncation of constant value
+C:\Users\jwoll\Desktop\project_folder\server_socket\Server_Socket\print_deffinitions.h(13,14): warning C4309: 'initializing': truncation of constant value
+C:\Users\jwoll\Desktop\project_folder\server_socket\Server_Socket\print_deffinitions.h(15,15): warning C4309: 'initializing': truncation of constant value
+C:\Users\jwoll\Desktop\project_folder\server_socket\Server_Socket\Server_Socket.cpp(36,11): warning C4101: 'current': unreferenced local variable
+  Server_Socket.vcxproj -> C:\Users\jwoll\Desktop\project_folder\server_socket\Debug\Server_Socket.exe
