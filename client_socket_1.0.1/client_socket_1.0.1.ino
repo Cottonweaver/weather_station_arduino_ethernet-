@@ -53,11 +53,6 @@ char trennzeichen = ';';
 //create values object
 values v;
 
-
-float volt;
-float ampere;
-float microampere;
-
 //--------------------------------------------------------------------
 //setup
 
@@ -134,13 +129,14 @@ void loop()
 //--------------------------------------------------------------------
 //selfmade functions
 
+//read sensor data into structure
 int readSensDat()
 {
   int analog_light;
   float temp_lux;
+  
   //read analog voltage values and convertig it into lux value
   analog_light = analogRead(lightSens);
-  
   temp_lux = analog_light * 5.0f / 1024.0f; //wandle analogen wert in anliegende Spannung um
   temp_lux = temp_lux / 10000.0f; //wandle anliegende Spannung über intern verbauten wiederstand in ampere um
   temp_lux = temp_lux * 1000000; // wandle in milli Ampere um 
@@ -149,11 +145,8 @@ int readSensDat()
   
   
   v.moisture = analogRead(moistureSens);
-    
-  //put DHT11 values into structure
-  //dht11.read(DHT_PIN_1, &v.temperature1, &v.humidity1, NULL);
-  //dht11.read(DHT_PIN_2, &v.temperature2, &v.humidity2, NULL);
 
+  //DHT22 values
   v.temperature1 = dht_1.readTemperature();
   v.humidity1 = dht_1.readHumidity();
   v.temperature2 = dht_2.readTemperature();
@@ -191,6 +184,7 @@ String read_()
 String dumpToString()
 {
   String out = "";
+  
   out += v.lux;
   out += trennzeichen;
   out += v.moisture;
@@ -211,5 +205,4 @@ void sendSensDat()
 {   
     client.print(dumpToString());
     client.flush();
-
 }
