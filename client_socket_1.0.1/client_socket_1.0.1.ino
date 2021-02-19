@@ -10,6 +10,8 @@
 
 #define DHTTYPE DHT22
 
+#define DELAY_TIME 3000
+
 EthernetClient client;
 
 //für connection wichtige ips und subnetmaske 
@@ -39,7 +41,7 @@ struct values{
   float humidity1 =0;
   float temperature2 =0;
   float humidity2 =0;
-  int lux;
+  float lux;
   int moisture;
 };
 
@@ -51,7 +53,7 @@ char trennzeichen = ';';
 //create values object
 values v;
 
-int analog_light;
+
 float volt;
 float ampere;
 float microampere;
@@ -104,14 +106,14 @@ void setup()
 void loop() 
 {
   readSensDat();
-  //chekc if client ist connected to server if so send values to server and to the Serial output
+  //check if client is connected to server if so send values to server and to the Serial output
   if(!client.connected())
   {
     client.stop();
     client.connect(ServerIp, port);
     client.setTimeout(1500);
     Serial.println(dumpToString());
-    delay(1500);
+    delay(DELAY_TIME);
   }
 
   //if not connected to server just print values to Serial output
@@ -121,7 +123,7 @@ void loop()
 
     if(input == "GET_SEN")
     {
-      delay(1500);
+      delay(DELAY_TIME);
       sendSensDat();
       Serial.println(dumpToString());
     }
@@ -134,9 +136,18 @@ void loop()
 
 int readSensDat()
 {
-  //read analog voltage values (converting into lightintensity on the server side)
-  v.lux = analogRead(lightSens);
-
+  int analog_light;
+  float temp_lux;
+  //read analog voltage values and convertig it into lux value
+  analog_light = analogRead(lightSens);
+  
+  temp_lux = analog_light * 5.0f / 1024.0f; //wandle analogen wert in anliegende Spannung um
+  temp_lux = temp_lux / 10000.0f; //wandle anliegende Spannung über intern verbauten wiederstand in ampere um
+  temp_lux = temp_lux * 1000000; // wandle in milli Ampere um 
+  temp_lux = temp_lux * 2; // wandle milli Ampere anhand vom Datasheet in einheit lux um y=ampere x=lumen Formel -> y=1/2(x)
+  v.lux = temp_lux;
+  
+  
   v.moisture = analogRead(moistureSens);
     
   //put DHT11 values into structure
@@ -197,10 +208,8 @@ String dumpToString()
 
 //send whole value structure to server with simple value -> OK structure (see simple example communication in the project_docs)
 void sendSensDat()
-{
-    String out = dumpToString();
-    
-    client.print(out);
+{   
+    client.print(dumpToString());
     client.flush();
 
 }
